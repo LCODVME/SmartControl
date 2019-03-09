@@ -1,4 +1,4 @@
-﻿# 忽略 LORA 编译文件
+﻿# 忽略编译文件
 EWARM/*/
 EWARM/*
 !EWARM/*.ewd
