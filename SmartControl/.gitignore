@@ -1,0 +1,11 @@
+﻿# 忽略 LORA 编译文件
+EWARM/*/
+EWARM/*
+!EWARM/*.ewd
+!EWARM/*.ewp
+!EWARM/*.eww
+!EWARM/*.s
+!EWARM/*.icf
+
+# 忽略 settings 文件夹
+settings/*
