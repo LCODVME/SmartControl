@@ -49,8 +49,21 @@
 
 /* Private define ------------------------------------------------------------*/
 
+#define Light_Pin GPIO_PIN_1
+#define Light_GPIO_Port GPIOA
+#define SPI2_NSS_Pin GPIO_PIN_12
+#define SPI2_NSS_GPIO_Port GPIOB
+#define IRQ_Pin GPIO_PIN_8
+#define IRQ_GPIO_Port GPIOA
+#define IRQ_EXTI_IRQn EXTI9_5_IRQn
+#define LD_Reset_Pin GPIO_PIN_5
+#define LD_Reset_GPIO_Port GPIOB
+#define LD_CS_Pin GPIO_PIN_7
+#define LD_CS_GPIO_Port GPIOB
 #define LED_Pin GPIO_PIN_8
 #define LED_GPIO_Port GPIOB
+#define BUZZER_Pin GPIO_PIN_9
+#define BUZZER_GPIO_Port GPIOB
 
 /* ########################## Assert Selection ############################## */
 /**

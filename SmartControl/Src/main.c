@@ -43,7 +43,8 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "ld3320.h"
+#include "control.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -70,6 +71,7 @@ void SystemClock_Config(void);
   *
   * @retval None
   */
+
 int main(void)
 {
   /* USER CODE BEGIN 1 */
@@ -94,9 +96,13 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_SPI2_Init();
+  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
-
+  //
+  ldReset();
+  //ldCommandInit();
+  ldAsrInit();
+  ldAddAntistop();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -107,8 +113,29 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-      HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-      for(uint32_t count = 0; count < 1000000; count++ );
+      
+      if( ldMode == LD_MODE_IDLE )
+      {
+          ldAsrInit();
+          ldAddAntistop();
+          ldAsrStart();
+      }
+      if( weakStatus )
+      {
+          static uint32_t time = 0;
+          if( time == 0 )
+          {
+              time = HAL_GetTick();
+          }
+          else if( HAL_GetTick() - time >= 1 )
+          {
+              time = HAL_GetTick();
+              if( --weakStatus == 0)
+              {
+                  time = 0;
+              }
+          }
+      }
   }
   /* USER CODE END 3 */
 
